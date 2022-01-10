@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        .course-card-container{
+            display: flex;
+  background-color: wheat;
+            border: 1px solid #c3c3c3;
+           justify-content: space-between;
+        }
+        .course-card {
+  background-color: #f1f1f1;
+  margin: 10px;
+  height: 300px;
+  width:30%;
+  padding: 20px;
+  font-size: 30px;
+}
+@media  (max-width: 750px) {
+            .course-card-container {
+          display: block;
+        }
+        }
+    </style>
+</head>
+<body>
+    <div>
+    <form id="form">
+       <input id="CourseName" type="text" placeholder="Add Course"/>
+    </br>
+       <input id="CourseDetails" type="text" placeholder="Add details"/>
+</br>
+<input type="submit">
+    </form>
+</div>
+<div class="course-card-container">  
+    <div class="course-card">
+         <h1 class="course-card-title">
+         <span>
+
+         </span>
+        </h1>
+    <div class="course-card-footer">
+
+    </div>
+        </div>
+</div>
+</body>
+</html>
+<script>
+    document.querySelector("form").addEventListener("submit", course);
+    function course(event){
+        event.preventDefault();
+        var Mtitle = document.querySelector("#CourseName").value;
+        var detail = document.querySelector("#CourseDetails").value;
+        var div = document.createElement("div");
+        var title1 = document.createElement("h1");
+        title1.textContent = Mtitle;
+        var footer1 = document.createElement("p");
+        footer1.textContent = detail;
+        div.append(title1,footer1);
+        document.querySelector("div").append(div)
+        }
+</script>
