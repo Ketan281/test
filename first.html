@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<head>
+    <title>Dom Assignment 2</title>
+    <style>
+        tr,
+        td,
+        th {
+            border: 1px solid black;
+        }
+    </style>
+</head>
+
+<body>
+    <form>
+        <input id="item" type="text" placeholder="Employee name">
+        <select id="priority">
+            <option value="">Employee dept</option>
+            <option value="dept1">department 1</option>
+            <option value="dept2">department 2</option>
+            <option value="dept3">department 3</option>
+        </select>
+        <input id="y1" type="number" placeholder="sales year 1">
+        <input id="y2" type="number" placeholder="sales year 2">
+        <input type="submit">
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <td>Employee Name</td>
+                <td>Employee dept</td>
+                <td>sales year 1</td>
+                <td>sales year 2</td>
+                <td id="avg">Average Sales</td>
+            </tr>
+        </thead>
+        <tbody>
+            <button id="asc" >ascending</button>
+            <button id="dec" >decending</button>
+
+        </tbody>
+    </table>
+</body>
+
+</html>
+<script>
+    document.querySelector('form').addEventListener("submit", dom2)
+    document.querySelector('form').addEventListener("submit", average)
+    
+    function average() {
+        y1 = document.querySelector('#y1').value
+        y2 = document.querySelector('#y2').value
+        var y3 = Number(y1)
+        var y4 = Number(y2)
+        var sum = y3 + y4
+        var avg = sum / 2
+        return avg
+    }
+    var arr1 = []
+    var arr2 = []
+    function dom2(event) {
+        event.preventDefault();
+        var item = document.querySelector('#item').value
+        var priority = document.querySelector('#priority').value
+        var y1 = document.querySelector('#y1').value
+        var y2 = document.querySelector('#y2').value
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        td1.textContent = item
+        var td2 = document.createElement("td");
+        td2.textContent = priority
+        var td3 = document.createElement("td");
+        td3.textContent = y1
+        var td4 = document.createElement("td");
+        td4.textContent = y2
+        var td5 = document.createElement("td");
+        td5.textContent = average()
+        tr.append(td1, td2, td3, td4, td5);
+        document.querySelector("tbody").append(tr)
+        arr1.push([item,priority,y1,y2,average()])
+        arr2.push([item,priority,y1,y2,average()])
+    }
+    document.querySelector('#asc').addEventListener('click',ascending)
+    
+function ascending(){
+    //console.log(arr)
+    arr1.sort(function(a,b) {
+        return a[4]-b[4];
+    })
+    // for (var i = 0; i < arr.length; i++) {
+    //     //console.log(arr[i][4])
+    // }
+    
+    var row = document.querySelectorAll("tr");
+    for (var i = 0; i < arr1.length; i++)  {
+    row[i+1].innerHTML = `<td>${arr1[i][0]}</td>
+            <td>${arr1[i][1]}</td>
+            <td>${arr1[i][2]}</td>
+            <td>${arr1[i][3]}</td>
+            <td>${arr1[i][4]}</td>`
+    }
+}
+document.querySelector('#dec').addEventListener('click',descending)
+    function descending(){
+    //console.log(arr)
+    arr2.sort(function(a,b) {
+        return b[4]-a[4];
+    })
+    var row = document.querySelectorAll("tr");
+    for (var i = 0; i < arr2.length; i++)  {
+    row[i+1].innerHTML = `<td>${arr2[i][0]}</td>
+            <td>${arr2[i][1]}</td>
+            <td>${arr2[i][2]}</td>
+            <td>${arr2[i][3]}</td>
+            <td>${arr2[i][4]}</td>`
+    }
+}
+</script>
