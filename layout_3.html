@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>media queries 1</title>
+		<style>
+			#container {
+				margin: auto;
+				box-sizing: border-box;
+				display: grid;
+				grid-template-rows: 70px 150px 150px 150px;
+				grid-template-columns: 60% 40%;
+				grid-gap: 20px;
+				grid-template-areas:
+					"nav nav"
+					"left rightbox1"
+					"left rightbox2"
+					"left rightbox3";
+			}
+			#nav {
+				background-color: yellow;
+				grid-area: nav;
+				font-size: 40px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#left {
+				background-color: red;
+				grid-area: left;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#rightbox1 {
+				background-color: green;
+				grid-area: rightbox1;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#rightbox2 {
+				background-color: green;
+				grid-area: rightbox2;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			#rightbox3 {
+				background-color: green;
+				grid-area: rightbox3;
+				font-size: 20px;
+				padding-left: 30px;
+				padding-top: 10px;
+			}
+			@media (min-width: 475px) and (max-width: 768px) {
+				#container {
+					grid-template-rows: 70px 200px 100px;
+					grid-template-columns: 30% 30% 30%;
+					grid-template-areas:
+						"nav nav nav"
+						"left left left"
+						"rightbox1 rightbox2 rightbox3";
+				}
+			}
+            @media  (max-width: 475px) {
+				#container {
+					grid-template-rows: 60px 150px 90px 90px 90px;
+					grid-template-columns: 80%;
+					grid-template-areas:
+						"nav nav nav"
+						"left left left"
+						"rightbox1 rightbox1 rightbox1"
+                        "rightbox2 rightbox2 rightbox2"
+                        "rightbox3 rightbox3 rightbox3";
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<div id="container">
+			<div id="nav" style="color: grey">Navigation</div>
+			<div id="left" style="color: grey">LEFT BOX</div>
+			<div id="rightbox1" style="color: rgb(128, 128, 128)">RIGHT BOX 1</div>
+			<div id="rightbox2" style="color: grey">RIGHT BOX 2</div>
+			<div id="rightbox3" style="color: grey">RIGHT BOX 3</div>
+		</div>
+	</body>
+</html
