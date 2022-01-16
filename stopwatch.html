@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>stop watch</title>
+</head>
+<body >
+    <div >
+        <h1 id="stopwatch">00:00:00</h1>
+        <button onclick="start()">Start</button></li>
+        <button onclick="stop()">Stop</button></li>
+        <button onclick="reset()">Reset</button></li>
+    </div>
+    <script>
+ const timer = document.getElementById('stopwatch');
+
+let hour = 0;min = 0;sec = 0;time = 1;
+
+function start() {
+  if (time == 1) {
+        time = 0;
+        timerCycle();
+    }
+}
+function stop() {
+  if (time == 0) {
+    time = 1;
+  }
+}
+
+function timerCycle() {
+    if (time == 0) {
+    sec  = +sec;
+    min  = +min; 
+    hour = +hour
+    sec = sec + 1;
+    if (sec == 60) {
+        min = min + 1;
+        sec = 0;
+    }
+    if (min == 60) {
+        hour = hour + 1;
+        min = 0;
+        sec = 0;
+    }
+
+    if (sec < 10 || sec == 0) {
+        sec = '0' + sec;
+    }
+    if (min < 10 || min == 0) {
+        min = '0' + min;
+    }
+    if (hour < 10 || hour == 0) {
+        hour = '0' + hour;
+    }
+
+    timer.innerHTML = hour + ':' + min + ':' + sec;
+
+    setTimeout("timerCycle()", 1000);
+  }
+}
+
+function reset() {
+    timer.innerHTML = "00:00:00";
+    time = 1;
+    hour = 0;
+    sec = 0;
+    min = 0;
+}
+    </script>
+</body>
+</html>
