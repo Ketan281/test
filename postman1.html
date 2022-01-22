@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <form id="form">
+           <input id="title" type="text"/>
+           <input type="checkbox" id="status">
+    </br>
+   <button onclick="add_task()">Add</button>
+        </form>
+    </div>
+    <div class="result">
+
+    </div>
+</body>
+</html>
+<script>
+    var c=0;
+    function add_task()
+    {
+    var t = document.getElementById('title').value;
+    var status = document.getElementById('status');
+    var data = {
+        "title":t,
+        "status":status.checked,
+        "id":c
+    }
+    c++
+    data = JSON.stringify(data);
+    localStorage.setItem("todo_list",data)
+    var mydata = localStorage.getItem("todo_list");
+    mydata = JSON.parse(mydata);
+ 
+   
+    Var div = document.createElement('div')
+    var h2 = document.createElement('h2');
+    h2.innerText = mydata.t;
+    if(mydata.status){
+        h2.style.color = 'green';
+    }else{
+        h2.style.color = 'red';
+    }
+    div.append(h2);
+   body.append(result)
+}
+</script>
