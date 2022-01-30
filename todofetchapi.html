@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>TODO-FETCH-API</title>
+	</head>
+	<body>
+		<form>
+			<input type="text" id="inputBox" />
+			<input type="checkbox" id="INPUT_CHECKBOX" />
+			<input type="submit" value="ADD" id="button" />
+		</form>
+
+		<div id="container"></div>
+	</body>
+</html>
+
+<script>
+	var INPUT_CHECKBOX = document.querySelector("#INPUT_CHECKBOX");
+	document.querySelector("form").addEventListener("submit", checked);
+	function checked(event) {
+		var inputBox = document.querySelector("#inputBox").value;
+		event.preventDefault();
+
+		let _data = {
+			title: inputBox,
+			status: INPUT_CHECKBOX.checked,
+		    n: "R"
+		};
+
+		fetch("https://json-server-mocker-masai.herokuapp.com/tasks", {
+			method: "POST",
+			body: JSON.stringify(_data),
+			headers: { "Content-type": "application/json; charset=UTF-8" },
+		})
+			.then((response) => response.json())
+			// .then((json) => console.log(json))
+			.then(function (json) {
+				//console.log(json)
+				//display(json);
+				fetchData();
+			})
+			.catch((err) => console.log(err));
+	}
+	function fetchData() {
+		fetch("https://json-server-mocker-masai.herokuapp.com/tasks", {
+			method: "GET",
+			headers: { "Content-type": "application/json;charset=UTF-8" },
+		})
+			.then((response) => response.json())
+			.then(function (json) {
+				console.log(json)
+				display(json);
+			})
+			.catch((err) => console.log(err));
+	}
+	fetchData();
+	var container = document.querySelector("#container");
+	function display(json) {
+        container.innerHTML = "";
+		json.forEach(function (element) {
+			//console.log(element);
+			if(element.n==="R"){
+				var elem = document.createElement("h1");
+				if (element.status == true) {
+					elem.style.color = "green";
+				} else {
+					elem.style.color = "red";
+				}
+				elem.innerHTML = element.title;
+				container.append(elem);
+			}
+		});
+	}
+</script>
